@@ -4,21 +4,31 @@
             Edit Campground
         </h1>
         <div class="col-6 offset-3">
-            <form action="/campgrounds/<%= campground._id %>?_method=PUT" method="POST">
+            <form action="/campgrounds/<%= campground._id %>?_method=PUT" method="POST" class="validated-form"
+                novalidate>
                 <div class="mb-3">
                     <label class="form-label" for="title">Title: </label>
                     <input class="form-control" type="text" id="title" name="campground[title]" autocomplete="off"
-                        value="<%= campground.title %>">
+                        value="<%= campground.title %>" required>
+                    <div class="invalid-feedback">
+                        Invalid Title!
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="location">Location: </label>
                     <input class="form-control" type="text" id="location" name="campground[location]" autocomplete="off"
-                        value="<%= campground.location %>">
+                        value="<%= campground.location %>" required>
+                    <div class="invalid-feedback">
+                        Invalid Title!
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="image">Image Url: </label>
                     <input class="form-control" type="text" id="image" name="campground[image]" autocomplete="off"
-                        value="<%= campground.image %>">
+                        value="<%= campground.image %>" required>
+                    <div class="invalid-feedback">
+                        Invalid Title!
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="price">Campground Price: </label>
@@ -26,13 +36,19 @@
                         <span class="input-group-text" id="price-label">$</span>
                         <input type="text" class="form-control" id="price" name="campground[price]" aria-label="price"
                             placeholder="0.00" aria-describedby="price-label" autocomplete="off"
-                            value="<%= campground.price %>">
+                            value="<%= campground.price %>" required>
+                        <div class="invalid-feedback">
+                            Invalid Title!
+                        </div>
                     </div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="description">Description: </label>
                     <textarea class="form-control" type="text" id="description" name="campground[description]"
-                        autocomplete="off" rows="5"><%= campground.description %></textarea>
+                        autocomplete="off" rows="5" required><%= campground.description %></textarea>
+                    <div class="invalid-feedback">
+                        Invalid Title!
+                    </div>
                 </div>
                 <div class="mb-3">
                     <button class="btn btn-warning">Save changes</button>
@@ -41,3 +57,23 @@
             <a href="/campground/<%= campground._id %>">Back to campground</a>
         </div>
     </div>
+
+    <script>
+        (function () {
+            'use strict'
+
+            const forms = document.querySelectorAll('.validated-form')
+
+            Array.from(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>

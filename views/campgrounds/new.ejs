@@ -4,32 +4,49 @@
             New Campground
         </h1>
         <div class="col-6 offset-3">
-            <form action="/campgrounds" method="POST">
+            <form action="/campgrounds" method="POST" novalidate class="validated-form">
                 <div class="mb-3">
                     <label class="form-label" for="title">Title: </label>
-                    <input class="form-control" type="text" id="title" name="campground[title]" autocomplete="off">
+                    <input class="form-control" type="text" id="title" name="campground[title]" autocomplete="off"
+                        required>
+                    <div class="invalid-feedback">
+                        Invalid Title!
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="location">Location: </label>
-                    <input class="form-control" type="text" id="location" name="campground[location]"
-                        autocomplete="off">
+                    <input class="form-control" type="text" id="location" name="campground[location]" autocomplete="off"
+                        required>
+                    <div class="invalid-feedback">
+                        Invalid Location!
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="image">Image Url: </label>
-                    <input class="form-control" type="text" id="image" name="campground[image]" autocomplete="off">
+                    <input class="form-control" type="text" id="image" name="campground[image]" autocomplete="off"
+                        required>
+                    <div class="invalid-feedback">
+                        Invalid Image Url!
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="price">Campground Price: </label>
                     <div class="input-group">
                         <span class="input-group-text" id="price-label">$</span>
                         <input type="text" class="form-control" id="price" name="campground[price]" aria-label="price"
-                            placeholder="0.00" aria-describedby="price-label" autocomplete="off">
+                            placeholder="0.00" aria-describedby="price-label" autocomplete="off" required>
+                        <div class="invalid-feedback">
+                            Invalid Price!
+                        </div>
                     </div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="description">Description: </label>
                     <textarea class="form-control" type="text" id="description" name="campground[description]"
-                        autocomplete="off"></textarea>
+                        autocomplete="off" required></textarea>
+                    <div class="invalid-feedback">
+                        Description should not be empty.
+                    </div>
                 </div>
                 <div class="mb-3">
                     <button class="btn btn-success">Add Campground</button>
@@ -38,3 +55,23 @@
             <a href="/campgrounds">Back to all campgrounds</a>
         </div>
     </div>
+
+    <script>
+        (function () {
+            'use strict'
+
+            const forms = document.querySelectorAll('.validated-form')
+
+            Array.from(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
