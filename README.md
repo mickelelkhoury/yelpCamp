@@ -7,3 +7,4 @@ This is going to be a huge project
 1. `git clone https://github.com/mickelelkhoury/yelpCamp.git`
 2. `npm install`
 3. `npm start`
+4. Go to [http://localhost:3000](http://localhost:3000)
