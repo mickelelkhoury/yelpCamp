@@ -7,7 +7,7 @@ const catchAsync = require('../utils/catchAsync');
 
 // Models
 const Campground = require('../models/campground');
-const Review = require('../models/campground');
+const Review = require('../models/review');
 
 // Validation Schemas
 const { reviewSchema } = require('../schemas.js');
