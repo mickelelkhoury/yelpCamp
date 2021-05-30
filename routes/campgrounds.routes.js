@@ -51,6 +51,10 @@ router.get(
 		const campground = await Campground.findById(req.params.id).populate(
 			'reviews'
 		);
+		if (!campground) {
+			req.flash('error', 'Campground not found');
+			return res.redirect('/campgrounds');
+		}
 		res.render('campgrounds/show', { campground });
 	})
 );
@@ -74,6 +78,11 @@ router.put(
 		const campground = await Campground.findByIdAndUpdate(id, {
 			...req.body.campground,
 		});
+		if (!campground) {
+			req.flash('error', 'Campground not found');
+			return res.redirect('/campgrounds');
+		}
+		req.flash('success', 'Campground updated successfully!');
 		res.redirect(`/campgrounds/${campground._id}`);
 	})
 );
