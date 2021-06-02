@@ -12,6 +12,7 @@ const localStrategy = require('passport-local');
 const ExpressError = require('./utils/ExpressError');
 
 // ROUTES
+const usersRoutes = require('./routes/users.routes');
 const campgroudsRoutes = require('./routes/campgrounds.routes');
 const reviewsRoutes = require('./routes/reviews.routes');
 
@@ -64,6 +65,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
+	res.locals.currentUser = req.user;
 	res.locals.success = req.flash('success');
 	res.locals.error = req.flash('error');
 	next();
@@ -79,6 +81,7 @@ app.get('/fakeUser', async (req, res) => {
 });
 
 // Routes
+app.use('/', usersRoutes);
 app.use('/campgrounds', campgroudsRoutes);
 app.use('/campgrounds/:id/reviews', reviewsRoutes);
 
