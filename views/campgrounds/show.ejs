@@ -17,18 +17,25 @@
                         <%= campground.location %>
                     </li>
                     <li class="list-group-item">
+                        Submited by <strong>
+                            <%= campground.author.username %>
+                        </strong>
+                    </li>
+                    <li class="list-group-item">
                         $<%= campground.price %>/night
                     </li>
                 </ul>
-                <div class="card-body d-flex justify-content-between">
-                    <a href="/campgrounds/<%= campground._id %>/edit" class="card-link btn btn-warning">Edit</a>
-                    <form action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
-                        <button class="card-link btn btn-danger">Delete</button>
-                    </form>
-                </div>
-                <div class="card-footer">
-                    <a href="/campgrounds">All Campgrounds</a>
-                </div>
+                <% if (currentUser && campground.author.equals(currentUser._id)) { %>
+                    <div class="card-body d-flex justify-content-between">
+                        <a href="/campgrounds/<%= campground._id %>/edit" class="card-link btn btn-warning">Edit</a>
+                        <form action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
+                            <button class="card-link btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                    <% } %>
+                        <div class="card-footer">
+                            <a href="/campgrounds">All Campgrounds</a>
+                        </div>
             </div>
         </div>
         <div class="col-6">
