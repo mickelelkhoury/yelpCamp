@@ -11,7 +11,7 @@ const campgrounds = require('../controllers/campgrounds.controller');
 // Routes
 router.get('/', catchAsync(campgrounds.getCampgrounds));
 
-router.get('/new', isLoggedIn, catchAsync(campgrounds.renderNewForm));
+router.get('/new', isLoggedIn, campgrounds.renderNewForm);
 
 router.post(
 	'/',
@@ -22,12 +22,7 @@ router.post(
 
 router.get('/:id', catchAsync(campgrounds.getSingleCampground));
 
-router.get(
-	'/:id/edit',
-	isLoggedIn,
-	isAuthor,
-	catchAsync(campgrounds.renderEditForm)
-);
+router.get('/:id/edit', isLoggedIn, isAuthor, campgrounds.renderEditForm);
 
 router.put(
 	'/:id',
