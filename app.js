@@ -17,8 +17,7 @@ const campgroundsRoutes = require('./routes/campgrounds.routes');
 const reviewsRoutes = require('./routes/reviews.routes');
 
 // Models
-const User = require('./models/user');
-const { getMaxListeners } = require('./models/user');
+const User = require('./models/user.model');
 
 mongoose.connect('mongodb://localhost:27017/yelp-camp', {
 	useNewUrlParser: true,

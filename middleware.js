@@ -6,8 +6,8 @@ const { campgroundSchema } = require('./schemas.js');
 const { reviewSchema } = require('./schemas.js');
 
 // Models
-const Campground = require('./models/campground');
-const Review = require('./models/review');
+const Campground = require('./models/campground.model');
+const Review = require('./models/review.model');
 
 // check if logged in
 module.exports.isLoggedIn = (req, res, next) => {

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const Review = require('./review');
+const Review = require('./review.model');
 
 const campgroundSchema = new Schema({
 	title: String,

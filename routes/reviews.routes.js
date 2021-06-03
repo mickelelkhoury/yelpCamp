@@ -7,8 +7,8 @@ const ExpressError = require('../utils/ExpressError');
 const catchAsync = require('../utils/catchAsync');
 
 // Models
-const Campground = require('../models/campground');
-const Review = require('../models/review');
+const Campground = require('../models/campground.model');
+const Review = require('../models/review.model');
 
 // Middleware
 
