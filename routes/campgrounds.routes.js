@@ -9,34 +9,28 @@ const catchAsync = require('../utils/catchAsync');
 const campgrounds = require('../controllers/campgrounds.controller');
 
 // Routes
-router.get('/', catchAsync(campgrounds.getCampgrounds));
+router
+	.route('/')
+	.get(catchAsync(campgrounds.getCampgrounds))
+	.post(
+		isLoggedIn,
+		validateCampground,
+		catchAsync(campgrounds.createCampground)
+	);
 
 router.get('/new', isLoggedIn, campgrounds.renderNewForm);
 
-router.post(
-	'/',
-	isLoggedIn,
-	validateCampground,
-	catchAsync(campgrounds.createCampground)
-);
-
-router.get('/:id', catchAsync(campgrounds.getSingleCampground));
+router
+	.route('/:id')
+	.get(catchAsync(campgrounds.getSingleCampground))
+	.put(
+		isLoggedIn,
+		isAuthor,
+		validateCampground,
+		catchAsync(campgrounds.editCampground)
+	)
+	.delete(isLoggedIn, isAuthor, catchAsync(campgrounds.deleteCampground));
 
 router.get('/:id/edit', isLoggedIn, isAuthor, campgrounds.renderEditForm);
-
-router.put(
-	'/:id',
-	isLoggedIn,
-	isAuthor,
-	validateCampground,
-	catchAsync(campgrounds.editCampground)
-);
-
-router.delete(
-	'/:id',
-	isLoggedIn,
-	isAuthor,
-	catchAsync(campgrounds.deleteCampground)
-);
 
 module.exports = router;
