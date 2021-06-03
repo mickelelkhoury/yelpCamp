@@ -13,7 +13,7 @@ const ExpressError = require('./utils/ExpressError');
 
 // ROUTES
 const usersRoutes = require('./routes/users.routes');
-const campgroudsRoutes = require('./routes/campgrounds.routes');
+const campgroundsRoutes = require('./routes/campgrounds.routes');
 const reviewsRoutes = require('./routes/reviews.routes');
 
 // Models
@@ -82,7 +82,7 @@ app.get('/fakeUser', async (req, res) => {
 
 // Routes
 app.use('/', usersRoutes);
-app.use('/campgrounds', campgroudsRoutes);
+app.use('/campgrounds', campgroundsRoutes);
 app.use('/campgrounds/:id/reviews', reviewsRoutes);
 
 app.get('/', (req, res) => {
