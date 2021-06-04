@@ -12,8 +12,13 @@ module.exports.renderNewForm = (req, res) => {
 
 module.exports.createCampground = async (req, res, next) => {
 	const campground = new Campground(req.body.campground);
+	campground.images = req.files.map((zone) => ({
+		url: zone.path,
+		filename: zone.filename,
+	}));
 	campground.author = req.user._id;
 	await campground.save();
+	console.log(campground);
 	req.flash('success', 'Campground created successfully!');
 	res.redirect(`/campgrounds/${campground._id}`);
 };
@@ -44,6 +49,12 @@ module.exports.editCampground = async (req, res, next) => {
 	const campground = await Campground.findByIdAndUpdate(id, {
 		...req.body.campground,
 	});
+	const imgs = req.files.map((zone) => ({
+		url: zone.path,
+		filename: zone.filename,
+	}));
+	campground.images.push(...imgs);
+	await campground.save();
 	req.flash('success', 'Campground updated successfully!');
 	res.redirect(`/campgrounds/${campground._id}`);
 };

@@ -5,7 +5,7 @@
         </h1>
         <div class="col-6 offset-3">
             <form action="/campgrounds/<%= campground._id %>?_method=PUT" method="POST" class="validated-form"
-                novalidate>
+                novalidate enctype="multipart/form-data">
                 <div class="mb-3">
                     <label class="form-label" for="title">Title: </label>
                     <input class="form-control" type="text" id="title" name="campground[title]" autocomplete="off"
@@ -19,15 +19,7 @@
                     <input class="form-control" type="text" id="location" name="campground[location]" autocomplete="off"
                         value="<%= campground.location %>" required>
                     <div class="invalid-feedback">
-                        Invalid Title!
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="image">Image Url: </label>
-                    <input class="form-control" type="text" id="image" name="campground[image]" autocomplete="off"
-                        value="<%= campground.image %>" required>
-                    <div class="invalid-feedback">
-                        Invalid Title!
+                        Invalid Location!
                     </div>
                 </div>
                 <div class="mb-3">
@@ -38,7 +30,7 @@
                             placeholder="0.00" aria-describedby="price-label" autocomplete="off"
                             value="<%= campground.price %>" required>
                         <div class="invalid-feedback">
-                            Invalid Title!
+                            Invalid Price!
                         </div>
                     </div>
                 </div>
@@ -47,7 +39,13 @@
                     <textarea class="form-control" type="text" id="description" name="campground[description]"
                         autocomplete="off" rows="5" required><%= campground.description %></textarea>
                     <div class="invalid-feedback">
-                        Invalid Title!
+                        Invalid Description!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="image">Add Images: </label>
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" id="image" name="image" multiple>
                     </div>
                 </div>
                 <div class="mb-3">
