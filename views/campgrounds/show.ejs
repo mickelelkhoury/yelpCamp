@@ -126,7 +126,8 @@
     </div>
 
     <script>
-        const campground = JSON.parse('<%-JSON.stringify(campground)%>');
+        // this will show an error but will break nothing
+        const campground = <%-JSON.stringify(campground)%>;
         const mapToken = '<%- process.env.MAPBOX_TOKEN %>';
     </script>
     <script src="/js/showPageMap.js"></script>
