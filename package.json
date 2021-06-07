@@ -1,7 +1,7 @@
 {
 	"name": "yelpcamp",
 	"version": "1.0.0",
-	"description": "",
+	"description": "A Project",
 	"main": "app.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
@@ -9,7 +9,7 @@
 		"dev-start": "nodemon app.js"
 	},
 	"keywords": [],
-	"author": "",
+	"author": "Mickel el Khoury",
 	"license": "ISC",
 	"dependencies": {
 		"@mapbox/mapbox-sdk": "^0.13.0",
