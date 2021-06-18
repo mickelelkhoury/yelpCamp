@@ -75,7 +75,7 @@ const sessionConfig = {
 	cookie: {
 		httpOnly: true,
 		// uncomment on deploy
-		secure: true,
+		// secure: true,
 		expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
 		maxAge: 1000 * 60 * 60 * 24 * 7,
 	},
@@ -141,15 +141,6 @@ app.use((req, res, next) => {
 	res.locals.success = req.flash('success');
 	res.locals.error = req.flash('error');
 	next();
-});
-
-app.get('/fakeUser', async (req, res) => {
-	const user = new User({
-		email: 'mickel@gmfaail.com',
-		username: 'mdafdsi',
-	});
-	const newUser = await User.register(user, 'dfsdfs');
-	res.send(newUser);
 });
 
 // Routes
