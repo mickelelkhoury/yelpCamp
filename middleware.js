@@ -2,8 +2,7 @@
 const ExpressError = require('./utils/ExpressError');
 
 // Validation Schemas
-const { campgroundSchema } = require('./schemas.js');
-const { reviewSchema } = require('./schemas.js');
+const { campgroundSchema, reviewSchema } = require('./schemas.js');
 
 // Models
 const Campground = require('./models/campground.model');
